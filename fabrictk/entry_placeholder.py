@@ -7,10 +7,18 @@ __all__ = ('Entry')
 
 
 class Entry(tk.Entry):
-	def __init__(self, master, placeholder='', **kwargs) -> None:
+	def __init__(self, master, placeholder='', password: bool | None = None, **kwargs) -> None:
 		super().__init__(master, **kwargs)
 
 		self._placeholder = placeholder
+
+		self._password = password
+		if self._password is not None:
+			if isinstance(self._password, str):
+				self._password_show = {'show': self._password}
+				self._password = True
+			else:
+				self._password_show = {'show': '•'}
 
 		self._general_configure = configure.Configure.add_kwargs(
 			kwargs=kwargs,
@@ -39,15 +47,25 @@ class Entry(tk.Entry):
 		# placeholder initialization
 		self._add_placeholder()
 
+	def _configure_placeholder(self):
+		self.configure(**self._entry_placeholder_configure)
+		if self._password:
+			self.configure(show='')
+
+	def _configure_no_placeholder(self):
+		self.configure(**self._entry_no_placeholder_configure)
+		if self._password:
+			self.configure(**self._password_show)
+
 	def _add_placeholder(self) -> None:
 		if (self.get() != self._placeholder) or (not self.get()):
 			self.insert(0, self._placeholder)
-			self.configure(**self._entry_placeholder_configure)
+			self._configure_placeholder()
 
 	def _remove_placeholder(self) -> None:
 		if self.get() == self._placeholder:
 			self.delete(0, tk.END)
-			self.configure(**self._entry_no_placeholder_configure)
+			self._configure_no_placeholder()
 
 	def _ignore_cursor_keys(self) -> None:
 		for cursor_key in configure.Configure.cursor_keys:
@@ -61,7 +79,7 @@ class Entry(tk.Entry):
 		if self.get() == self._placeholder:
 			self.icursor(0)
 			self._ignore_cursor_keys()
-			self.configure(**self._entry_placeholder_configure)
+			self._configure_placeholder()
 		else:
 			self._unignore_cursor_keys()
 
