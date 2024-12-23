@@ -11,7 +11,7 @@ class TitleBar(tk.Frame):
 	def __init__(
 		self,
 		master,
-		title_text='FabricTk',
+		title_text=None,
 		background=configure.Configure.title_bar['widget']['background'],
 		foreground=configure.Configure.title_bar['widget']['foreground'],
 		height=32,
@@ -24,6 +24,8 @@ class TitleBar(tk.Frame):
 
 		self._master = master
 		self._title_text = title_text
+		if title_text is None:
+			self._title_text = self._master.title()
 		self._background = background
 		self._foreground = foreground
 		self._height = height

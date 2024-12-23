@@ -76,7 +76,7 @@ class Application(tk.Tk):
 		self.__create_widgets()
 
 	def __create_widgets(self) -> None:
-		self._title_bar = ftk.TitleBar(self, title_text='FabricTk example')
+		self._title_bar = ftk.TitleBar(self)
 
 		self._body = Body(self)
 		self._body.place(
