@@ -30,7 +30,7 @@ class LoginForm(tk.Frame):
 			**self._widgets_padding,
 		)
 
-		self._entry_password = ftk.Entry(self, placeholder='Password')
+		self._entry_password = ftk.Entry(self, placeholder='Password', password=True)
 		self._entry_password.grid(
 			column=0,
 			row=1,
