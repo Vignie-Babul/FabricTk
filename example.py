@@ -75,7 +75,7 @@ class LoginForm(tk.Frame):
 		self._label_sign_up = ftk.Label(
 			self._label_sign_up_frame,
 			secondary=True,
-			text="Don't have and account? "
+			text="Don't have an account? "
 		)
 		self._label_sign_up.pack(
 			anchor='nw',
