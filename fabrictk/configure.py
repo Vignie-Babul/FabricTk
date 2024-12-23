@@ -26,6 +26,7 @@ class Configure:
 	}
 	background_color = colors['grey_7']
 
+	general_font = 'Consolas'
 	general = {
 		'borderwidth': 0,
 		'font': ('Concolas', 13),
@@ -88,6 +89,11 @@ class Configure:
 			'collapse': '🗗',
 			'close': '🞨',
 		}
+	}
+
+	hyperlink = {
+		'background': colors['grey_7'],
+		'foreground': colors['enter'],
 	}
 
 	@staticmethod
