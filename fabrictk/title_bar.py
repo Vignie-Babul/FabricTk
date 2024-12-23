@@ -38,6 +38,8 @@ class TitleBar(tk.Frame):
 		self._master.after(10, lambda: _set_task_bar_integration(root_window=self._master))
 
 		self._master_size = configure.Configure.get_root_win_size(master=self._master)
+		self._master_size_title_bar = [self._master_size[0], self._master_size[1] + self._height]
+		self._master.geometry('{0}x{1}'.format(*self._master_size_title_bar))
 
 		self._buttons_width = 46
 		self._half_height = self._height / 2
