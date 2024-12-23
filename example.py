@@ -11,37 +11,81 @@ class LoginForm(tk.Frame):
 		self.configure(background=ftk.Configure.background_color)
 
 		# configure grid
-		self.columnconfigure((0), weight=1, uniform='default')
-		self.rowconfigure((0, 1, 2), weight=1, uniform='default')
+		self.columnconfigure((0, 1), weight=1, uniform='default')
+		self.rowconfigure((0, 1, 2, 3, 4, 5), weight=1, uniform='default')
 
 		self._widgets_padding = {
 			'sticky': 'nwse',
-			'padx': 20,
+			'pady': 5,
+		}
+
+		self._label_sign_up_padding = {
+			'sticky': 'nw',
 			'pady': 5,
 		}
 
 		self.__create_widgets()
 
 	def __create_widgets(self) -> None:
+		# title
+		font = (ftk.Configure.general_font, '24')
+		self._label_login = ftk.Label(self, text='Login', font=font)
+		self._label_login.grid(
+			column=0,
+			columnspan=2,
+			row=0,
+			rowspan=2,
+			**self._widgets_padding,
+		)
+
+		# login form
 		self._entry_login = ftk.Entry(self, placeholder='Login')
 		self._entry_login.grid(
 			column=0,
-			row=0,
+			columnspan=2,
+			row=2,
 			**self._widgets_padding,
 		)
 
 		self._entry_password = ftk.Entry(self, placeholder='Password', password=True)
 		self._entry_password.grid(
 			column=0,
-			row=1,
+			columnspan=2,
+			row=3,
 			**self._widgets_padding,
 		)
 
 		self._button_sign_in = ftk.Button(self, text='Sign in')
 		self._button_sign_in.grid(
 			column=0,
-			row=2,
+			columnspan=2,
+			row=4,
 			**self._widgets_padding,
+		)
+
+		# sign up
+		self._label_sign_up_frame = tk.Frame(self, background=ftk.Configure.background_color)
+		self._label_sign_up_frame.grid(
+			column=0,
+			columnspan=2,
+			row=5,
+			**self._widgets_padding,
+		)
+
+		self._label_sign_up = ftk.Label(
+			self._label_sign_up_frame,
+			secondary=True,
+			text="Don't have and account? "
+		)
+		self._label_sign_up.pack(
+			anchor='nw',
+			side='left',
+		)
+
+		self._hyperlink_sign_up = ftk.Hyperlink(self._label_sign_up_frame, text='Sign up')
+		self._hyperlink_sign_up.pack(
+			anchor='nw',
+			side='left',
 		)
 
 
@@ -63,7 +107,7 @@ class Application(tk.Tk):
 
 		# configure the window
 		self.title('FabricTk example')
-		self.geometry('400x300')
+		self.geometry('400x400')
 		self.resizable(False, False)
 		self.configure(background=ftk.Configure.background_color)
 
@@ -80,7 +124,7 @@ class Application(tk.Tk):
 
 		self._body = Body(self)
 		self._body.place(
-			height=self._size[1] - 32,
+			height=self._size[1],
 			relwidth=1,
 			y=32,
 		)
@@ -90,7 +134,7 @@ class Application(tk.Tk):
 			column=0,
 			row=0,
 			sticky='nwse',
-			padx=0,
+			padx=20,
 			pady=50,
 		)
 
