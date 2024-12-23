@@ -62,7 +62,7 @@ class Application(tk.Tk):
 		super().__init__()
 
 		# configure the window
-		self.title('FaricTk example')
+		self.title('FabricTk example')
 		self.geometry('400x300')
 		self.resizable(False, False)
 		self.configure(background=ftk.Configure.background_color)
@@ -76,7 +76,7 @@ class Application(tk.Tk):
 		self.__create_widgets()
 
 	def __create_widgets(self) -> None:
-		self._title_bar = ftk.TitleBar(self)
+		self._title_bar = ftk.TitleBar(self, title_text='FabricTk example')
 
 		self._body = Body(self)
 		self._body.place(

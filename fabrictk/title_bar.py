@@ -11,6 +11,7 @@ class TitleBar(tk.Frame):
 	def __init__(
 		self,
 		master,
+		title_text='FabricTk',
 		background=configure.Configure.title_bar['widget']['background'],
 		foreground=configure.Configure.title_bar['widget']['foreground'],
 		height=32,
@@ -22,6 +23,7 @@ class TitleBar(tk.Frame):
 		super().__init__(master, background=background)
 
 		self._master = master
+		self._title_text = title_text
 		self._background = background
 		self._foreground = foreground
 		self._height = height
@@ -91,7 +93,7 @@ class TitleBar(tk.Frame):
 	def _create_title(self) -> None:
 		self._title = tk.Label(
 			self._title_frame,
-			text='Header - This is the test task bar',
+			text=self._title_text,
 			background=self._background,
 			foreground=self._foreground,
 		)
